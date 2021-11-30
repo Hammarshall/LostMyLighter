@@ -5,9 +5,9 @@ namespace Grupparbete_Marshall.Methods
 {
     internal class AddUser
     {
-        public static void AddUsers()
+        public static void AddUsers() //metod för att lägga t anv
         {
-            int age = 0;
+            int age = 0; // start V är satt till 0
             int postNumber = 0;
 
             Console.Write("Enter your name: ");
@@ -39,9 +39,9 @@ namespace Grupparbete_Marshall.Methods
             }
 
             User user = new User(name, age, streetAddress, postNumber);
-            LoginUser.currentUser = user;
+            LoginUser.currentUser = user; //metod den inloggade anv är currentuser är nu variablen user
 
-            Console.WriteLine("You got ID: {0}", user.ID);
+            Console.WriteLine("You got ID: {0}", user.ID); // ditt anv id tilldelas
             Console.WriteLine("Remember it, you will use it to log in... ");
 
             Console.WriteLine("Press any key to clear console and return to main menu...");

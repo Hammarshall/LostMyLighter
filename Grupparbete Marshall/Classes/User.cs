@@ -6,17 +6,18 @@ namespace Grupparbete_Marshall.Classes
 {
     internal class User
     {
-        public static List<User> userList = new List<User>();
+        public static List<User> userList = new List<User>(); // user listan
 
-        public static void InitializeUserList()
+        public static void InitializeUserList() //user list med anv
         {
-            new User("Anders Andersson", 30, "Exempeladress 1", 40010, 0, 0, 0);
+            new User("Anders Andersson", 30, "Exempeladress 1", 40010, 0, 0, 0); // Förnamn, efternamn, adress
             new User("Anders Johansson", 30, "Exempeladress 2", 40010, 0, 0, 0);
             new User("Anders Göransson", 30, "Exempeladress 3", 40010, 0, 0, 5);
             new User("Anders Nilsson", 30, "Exempeladress 4", 40010, 0, 0, 0);
             new User("Anders Olsson", 30, "Exempeladress 5", 40010, 0, 0, 0);
         }
 
+        //fields
         private int _id;
         private string _name;
         private int _age;
@@ -32,11 +33,11 @@ namespace Grupparbete_Marshall.Classes
             set { _id = value; }
         }
 
-        public User()
+        public User() // tom konstruktor
         {
         }
 
-        public User(string n, int a, string s, int p, int ns, int f, int l)
+        public User(string n, int a, string s, int p, int ns, int f, int l) //konstruktor
         {
             this._id = userList.Count + 1;
             this._name = n;
@@ -46,7 +47,7 @@ namespace Grupparbete_Marshall.Classes
             this._numberOfSearch = ns;
             this._foundMarschall = f;
             this._lostLighters = l;
-            userList.Add(this);
+            userList.Add(this); // metoden att lägga t anv t listan
         }
 
         public User(string n, int a, string s, int p)
@@ -59,7 +60,7 @@ namespace Grupparbete_Marshall.Classes
             userList.Add(this);
         }
 
-        public static void PrintUser(User user)
+        public static void PrintUser(User user) //metod skriv ut user
         {
             Console.WriteLine("ID:{0}", user._id);
             Console.WriteLine("Name:{0}", user._name);
@@ -76,43 +77,43 @@ namespace Grupparbete_Marshall.Classes
             Menus.MenuAtLogin.LoginMenu();
         }
 
-        public static string GetUserName(User user)
+        public static string GetUserName(User user) //metod få ut anv via anv-namn
         {
             return user._name;
         }
 
-        public static User GetUserById(int id)
+        public static User GetUserById(int id) // få ut anv via anv-id
         {
-            foreach (User u in userList)
+            foreach (User u in userList) //för varje anv i user list
             {
-                if (u._id == id)
+                if (u._id == id) //om user id = id retunera U
                 {
                     return u;
                 }
             }
 
-            Console.WriteLine("That was not a valid ID, try again..");
-            return null;
+            Console.WriteLine("That was not a valid ID, try again.."); //om user id ej finns gör detta
+            return null; // retur ett null värde
         }
 
-        public static void AddSearch(User user)
+        public static void AddSearch(User user) //metod addera antl sökningar
+        {
+            user = GetUserById(LoginUser.currentUser._id); // metod, user = dess unika id som de är inloggade med
+            user._numberOfSearch++; // lägg till en sökning 
+        }
+
+        public static void AddFoundMarshall(User user) // metod addera antl funna Marschaller
         {
             user = GetUserById(LoginUser.currentUser._id);
-            user._numberOfSearch++;
+            user._foundMarschall++; // lägg till en "pinne"
         }
 
-        public static void AddFoundMarshall(User user)
-        {
-            user = GetUserById(LoginUser.currentUser._id);
-            user._foundMarschall++;
-        }
-
-        public static void AddLostLighter(User user)
+        public static void AddLostLighter(User user) //Metod addera antl bortappade tändare
         {
             user = GetUserById(LoginUser.currentUser._id);
             user._lostLighters++;
 
-            Console.WriteLine("Lost lighter has been recorded");
+            Console.WriteLine("Lost lighter has been recorded"); // skrivs ut när man lagt till att man har tappat en tändare
 
             Console.WriteLine("Press any key to clear console and return to main menu...");
             Console.ReadKey();
@@ -120,7 +121,7 @@ namespace Grupparbete_Marshall.Classes
             Menus.MenuAtLogin.LoginMenu();
         }
 
-        public static void EditUserMethod(User user)
+        public static void EditUserMethod(User user) // ändra i user
         {
             int userInput = 0;
 
@@ -166,7 +167,7 @@ namespace Grupparbete_Marshall.Classes
             Menus.MenuAtLogin.LoginMenu();
         }
 
-        public static void FoundMarschallScore()
+        public static void FoundMarschallScore() // Metod, score för antl hittade marschaller
 
         {
             User TopScores = new User();
@@ -192,7 +193,6 @@ namespace Grupparbete_Marshall.Classes
         }
 
         public static void LighterHighScore()
-
         {
             User TopScores = new User();
             foreach (var users in userList)
@@ -202,11 +202,9 @@ namespace Grupparbete_Marshall.Classes
                     break;
                 }
                 if (users._lostLighters > TopScores._lostLighters)
-
                 {
                     TopScores = users;
                 }
-              
             }
 
             Console.WriteLine("The user who has lost the most lighters is... ");
