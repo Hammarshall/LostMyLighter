@@ -24,15 +24,15 @@ use the up and down arrowkeys and enter!";
             switch (SelectedIndex)
             {
                 case 0:
-                    LoginUser.UserLogin();
+                    LoginUser.UserLogin(); // metoden för att logga in
                     break;
 
                 case 1:
-                    AddUser.AddUsers();
+                    AddUser.AddUsers(); // metoden för att skapa en user
                     break;
 
                 case 2:
-                    EndProgram.ExitMarschall();
+                    EndProgram.ExitMarschall(); //metoden för att avsluta prog
                     break;
             }
         }
@@ -44,7 +44,7 @@ use the up and down arrowkeys and enter!";
             Environment.Exit(0);
         }
 
-        public void Start()
+        public void Start() //metod för att köra start menyn
         {
             RunStartMenu();
         }

@@ -4,42 +4,44 @@ using System.Linq;
 
 namespace Grupparbete_Marshall.Classes
 {
-    internal class Marschall
+    internal class Marschall //klassen för marschallerna
     {
-        public static List<Marschall> marschallList = new List<Marschall>();
+        public static List<Marschall> marschallList = new List<Marschall>(); // listan där vi sparar alla marschaller
+
+        //marschallens fields
 
         private int id;
         private string brand;
         private double burntime;
         private DateTime reg_stamp;
-        private User reg_user;
+        private User reg_user; // anv som reggade
         private DateTime burnout;
-        private string streetName = "unknown";
+        private string streetName = "unknown"; // i detta stadiet är adressen som defult satt till okänd
         private int streetNumber;
-        private string region;
+        // private string region;
         private int postalCode;
 
-        public DateTime Burnout
+        public DateTime Burnout // när den kmr brinna ut
         {
-            get { return burnout; }
-            set { burnout = value; }
+            get { return burnout; } //retur tiden för burnout
+            set { burnout = value; } // sätter värdet aka tiden för när den brinner ut
         }
 
-        public int PostalCode
+        public int PostalCode //postkod
         {
             get { return postalCode; }
             set { postalCode = value; }
         }
 
-        public User RegUser
+        public User RegUser //anv som regga
         {
             get { return reg_user; }
             set { reg_user = value; }
         }
 
-        public Marschall(string _brand, double bTime, int i, string sName, int sNumber, int pCode)
+        public Marschall(string _brand, double bTime, int i, string sName, int sNumber, int pCode) //konstruktorn som skapar marshallerna
         {
-            id = marschallList.Count + 1;
+            id = marschallList.Count + 1; // idt sätts baserat på antal M det finns i listan 1+
             brand = _brand;
             reg_stamp = DateTime.Now;
             reg_user = User.GetUserById(i);
@@ -48,7 +50,7 @@ namespace Grupparbete_Marshall.Classes
             streetName = sName;
             streetNumber = sNumber;
             postalCode = pCode;
-            marschallList.Add(this);
+            marschallList.Add(this); //metod för att lägga till den i listan
         }
 
         public Marschall(string bn, int id, double bt, DateTime dt, int pc)
@@ -63,9 +65,9 @@ namespace Grupparbete_Marshall.Classes
             marschallList.Add(this);
         }
 
-        public static void InitializeMarschallList()
+        public static void InitializeMarschallList() //inisiera listan med marschaller
         {
-            DateTime date1 = new DateTime(2021, 11, 16, 12, 0, 0, 0);
+            DateTime date1 = new DateTime(2021, 11, 16, 12, 0, 0, 0); //YY-MM-DD, HH-MI-SEK
 
             new Marschall("Solstickan", 60, 2, "Nergårdsvägen", 43, 43636);
             new Marschall("Solstickan", 60, 1, "Pilegårdsvägen", 1, 43635);
@@ -74,20 +76,20 @@ namespace Grupparbete_Marshall.Classes
             new Marschall("Solstickan", 3, 1, date1, 43636);
         }
 
-        public static void PrintAllMarschalls()
+        public static void PrintAllMarschalls() //metod, skriva ut alla marschaller
         {
-            foreach (Marschall m in marschallList)
+            foreach (Marschall m in marschallList) //för varje Marschall i MList skriv ut
             {
                 PrintMarschall(m);
             }
 
-            Console.WriteLine("Press any key to clear console and return to main menu...");
+            Console.WriteLine("Press any key to clear console and return to main menu..."); //när man sskrivit ut alla Marschaller
             Console.ReadKey();
-            Console.Clear();
-            Menus.MenuAtLogin.LoginMenu();
+            Console.Clear(); //rensa consollen
+            Menus.MenuAtLogin.LoginMenu(); //metod tbx till log in meny
         }
 
-        public static void PrintMarschall(Marschall marschall)
+        public static void PrintMarschall(Marschall marschall) //skriver ut alla Marschaller anv har reggat
         {
             Console.WriteLine("ID: {0}", marschall.id);
             Console.WriteLine("Brand: {0}", marschall.brand);
@@ -97,10 +99,10 @@ namespace Grupparbete_Marshall.Classes
             Console.WriteLine();
         }
 
-        public static void PrintActiveMarschall()
+        public static void PrintActiveMarschall() // skriv ut alla aktiva marschaller
         {
-            var activeMarschall = marschallList.Where(marschall => marschall.Burnout > DateTime.Now);
-            foreach (Marschall m in activeMarschall)
+            var activeMarschall = marschallList.Where(marschall => marschall.Burnout > DateTime.Now); // i MList där Marschallens brinntid är större än tiden just nu, vilket visar på att den "är igång"
+            foreach (Marschall m in activeMarschall) // För varje Marshchall i MList som uppfyller de kravet skriv ut
             {
                 PrintMarschall(m);
             }
@@ -108,14 +110,14 @@ namespace Grupparbete_Marshall.Classes
             Console.WriteLine("Press any key to clear console and return to main menu...");
             Console.ReadKey();
             Console.Clear();
-            Menus.MenuAtLogin.LoginMenu();
+            Menus.MenuAtLogin.LoginMenu(); // gå tbx till log in meny och rensa consolen
         }
 
-        public static void PrintUserMarschall(User user)
+        public static void PrintUserMarschall(User user) //Klassen User
         {
-            foreach (Marschall m in marschallList.Where(marschall => marschall.RegUser.Equals(user)))
+            foreach (Marschall m in marschallList.Where(marschall => marschall.RegUser.Equals(user))) // Varje M i MList där en specifik user har reggat
             {
-                PrintMarschall(m);
+                PrintMarschall(m); //skriv ut 
             }
 
             Console.WriteLine("Press any key to clear console and return to main menu...");

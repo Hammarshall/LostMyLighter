@@ -8,7 +8,7 @@ namespace Grupparbete_Marshall.Menus
     {
         public static void LoginMenu()
         {
-            int option = 0;
+            int option = 0; //start V på anv input = 0
 
             do
             {
@@ -45,42 +45,42 @@ namespace Grupparbete_Marshall.Menus
                 switch (option)
                 {
                     case 0:
-                        AddMarschall.AddMarschalls();
+                        AddMarschall.AddMarschalls(); // kallar på metoden add Marschall och delen Add amrschalls
                         break;
 
                     case 1:
-                        Marschall.PrintAllMarschalls();
+                        Marschall.PrintAllMarschalls(); //klassen marschall, metoden print all marschalls
                         break;
 
                     case 2:
-                        Marschall.PrintActiveMarschall();
+                        Marschall.PrintActiveMarschall(); // skriv ut alla aktiva marschaller
                         break;
 
                     case 3:
-                        FilterActiveMarschall.FilterMarschall();
+                        FilterActiveMarschall.FilterMarschall(); //filtrera så man bara ser aktiva marschaller
                         break;
 
                     case 4:
-                        Marschall.PrintUserMarschall(LoginUser.currentUser);
+                        Marschall.PrintUserMarschall(LoginUser.currentUser); //skriv ut alla marschaller anv har reggat
                         break;
                     case 5:
-                        User.PrintUser(LoginUser.currentUser);
+                        User.PrintUser(LoginUser.currentUser); //skriv ut den anv profil som är inloggad
                         break;
 
                     case 6:
-                        User.EditUserMethod(LoginUser.currentUser);
+                        User.EditUserMethod(LoginUser.currentUser); //ropar på metoden ändra i anv
                         break;
 
                     case 7:
-                        User.AddLostLighter(LoginUser.currentUser);
+                        User.AddLostLighter(LoginUser.currentUser); //metoden för att lägga t en borttappad tändare
                         break;
 
                     case 8:
-                        User.LighterHighScore();
+                        User.LighterHighScore(); // se highscore för flest borttappade tändare
                         break;
 
                     case 9:
-                        User.FoundMarschallScore();
+                        User.FoundMarschallScore(); // se highscore för flest upphittade marschaller
                         break;
 
                     case 10:
@@ -88,10 +88,10 @@ namespace Grupparbete_Marshall.Menus
                         break;
 
                     default:
-                        Console.WriteLine("Invalid input, try again!");
+                        Console.WriteLine("Invalid input, try again!"); //om inget mmatchar casen
                         break;
                 }
-            } while (option != 0);
+            } while (option != 0); // gör detta sålänge options värde ej är 0
         }
     }
 }

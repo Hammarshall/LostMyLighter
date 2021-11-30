@@ -5,9 +5,9 @@ namespace Grupparbete_Marshall.Methods
 {
     internal class AddMarschall
     {
-        public static void AddMarschalls()
+        public static void AddMarschalls() //metod för att lägga t Marschaller
         {
-            double burnTime = 0;
+            double burnTime = 0; // allt har start V 0
             int streetNumber = 0;
             int postalCode = 0;
 
@@ -53,10 +53,10 @@ namespace Grupparbete_Marshall.Methods
 
             Console.WriteLine("The marschall was registered at {0}", DateTime.Now);
 
-            Console.WriteLine("The marschall is expected to burn out at {0} ", DateTime.Now.AddMinutes(burnTime));
+            Console.WriteLine("The marschall is expected to burn out at {0} ", DateTime.Now.AddMinutes(burnTime)); // tiden Marschallen reggades, addera min som den ska brinna, skicka med burntime
 
             Marschall marschall = new Marschall(brand, burnTime, LoginUser.currentUser.ID, streetName, streetNumber, postalCode);
-            User.AddFoundMarshall(LoginUser.currentUser);
+            User.AddFoundMarshall(LoginUser.currentUser); //addera marshallen till anv
 
             Console.WriteLine("Press any key to clear console and return to main menu...");
             Console.ReadKey();
